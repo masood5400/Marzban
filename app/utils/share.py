@@ -45,6 +45,7 @@ class V2rayShareLink(str):
         type="",
         tls="none",
         sni="",
+        fragment="",
         fp="",
         alpn="",
         pbk="",
@@ -69,6 +70,7 @@ class V2rayShareLink(str):
 
         if tls == "tls":
             payload["sni"] = sni
+            payload["fragment"] = fragment
             payload["fp"] = fp
             payload["alpn"] = alpn
             if ais:
@@ -100,6 +102,7 @@ class V2rayShareLink(str):
               flow='',
               tls='none',
               sni='',
+              fragment='',
               fp='',
               alpn='',
               pbk='',
@@ -127,6 +130,7 @@ class V2rayShareLink(str):
 
         if tls == "tls":
             payload["sni"] = sni
+            payload["fragment"] = fragment
             payload["fp"] = fp
             payload["alpn"] = alpn
             if ais:
@@ -965,6 +969,11 @@ def process_inbounds_and_tags(
                     path = host["path"].format_map(format_variables)
                 else:
                     path = inbound.get("path", "").format_map(format_variables)
+                result_fragment = ''
+                if host["packets"] is not None and host["length"] is not None and host["interval"] is not None:
+                    result_fragment = "{},{},{}".format(host["length"], host["interval"],host["packets"])
+                else:
+                    result_fragment = inbound.get("fragment", "")
 
                 host_inbound.update(
                     {
@@ -975,6 +984,7 @@ def process_inbounds_and_tags(
                         "alpn": host["alpn"] or inbound.get("alpn", ""),
                         "path": path,
                         "fp": host["fingerprint"] or inbound.get("fp", ""),
+                        "fragment": result_fragment,
                         "ais": host["allowinsecure"]
                         or inbound.get("allowinsecure", ""),
                     }

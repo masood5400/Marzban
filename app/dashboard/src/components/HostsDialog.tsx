@@ -159,6 +159,9 @@ const AccordionInbound: FC<AccordionInboundType> = ({
     addHost({
       host: "",
       sni: "",
+      packets: "",
+      length: "",
+      interval: "",
       port: null,
       path: null,
       address: "",
@@ -556,6 +559,126 @@ const AccordionInbound: FC<AccordionInboundType> = ({
                         />
                         {accordionErrors && accordionErrors[index]?.sni && (
                           <Error>{accordionErrors[index]?.sni?.message}</Error>
+                        )}
+                      </FormControl>
+                      <FormControl
+                        isInvalid={
+                          !!(accordionErrors && accordionErrors[index]?.packets)
+                        }
+                      >
+                        <FormLabel
+                          display="flex"
+                          pb={1}
+                          alignItems="center"
+                          gap={1}
+                          justifyContent="space-between"
+                          m="0"
+                        >
+                          <span>{t("hostsDialog.packets")}</span>
+
+                          <Popover isLazy placement="right">
+                            <PopoverTrigger>
+                              <InfoIcon />
+                            </PopoverTrigger>
+                            <Portal>
+                              <PopoverContent p={2}>
+                                <PopoverArrow />
+                                <PopoverCloseButton />
+                                <Text fontSize="xs" pr={5}>
+                                  {t("hostsDialog.packets.info")}
+                                </Text>
+                              </PopoverContent>
+                            </Portal>
+                          </Popover>
+                        </FormLabel>
+                        <Input
+                          size="sm"
+                          borderRadius="4px"
+                          placeholder="Packets (e.g. tlshello)"
+                          {...form.register(hostKey + "." + index + ".packets")}
+                        />
+                        {accordionErrors && accordionErrors[index]?.packets && (
+                          <Error>{accordionErrors[index]?.packets?.message}</Error>
+                        )}
+                      </FormControl>
+                      <FormControl
+                        isInvalid={
+                          !!(accordionErrors && accordionErrors[index]?.length)
+                        }
+                      >
+                        <FormLabel
+                          display="flex"
+                          pb={1}
+                          alignItems="center"
+                          gap={1}
+                          justifyContent="space-between"
+                          m="0"
+                        >
+                          <span>{t("hostsDialog.length")}</span>
+
+                          <Popover isLazy placement="right">
+                            <PopoverTrigger>
+                              <InfoIcon />
+                            </PopoverTrigger>
+                            <Portal>
+                              <PopoverContent p={2}>
+                                <PopoverArrow />
+                                <PopoverCloseButton />
+                                <Text fontSize="xs" pr={5}>
+                                  {t("hostsDialog.length.info")}
+                                </Text>
+                              </PopoverContent>
+                            </Portal>
+                          </Popover>
+                        </FormLabel>
+                        <Input
+                          size="sm"
+                          borderRadius="4px"
+                          placeholder="Length (e.g. 10-20)"
+                          {...form.register(hostKey + "." + index + ".length")}
+                        />
+                        {accordionErrors && accordionErrors[index]?.length && (
+                          <Error>{accordionErrors[index]?.length?.message}</Error>
+                        )}
+                      </FormControl>
+                      <FormControl
+                        isInvalid={
+                          !!(accordionErrors && accordionErrors[index]?.interval)
+                        }
+                      >
+                        <FormLabel
+                          display="flex"
+                          pb={1}
+                          alignItems="center"
+                          gap={1}
+                          justifyContent="space-between"
+                          m="0"
+                        >
+                          <span>{t("hostsDialog.interval")}</span>
+
+                          <Popover isLazy placement="right">
+                            <PopoverTrigger>
+                              <InfoIcon />
+                            </PopoverTrigger>
+                            <Portal>
+                              <PopoverContent p={2}>
+                                <PopoverArrow />
+                                <PopoverCloseButton />
+                                <Text fontSize="xs" pr={5}>
+                                  {t("hostsDialog.interval.info")}
+                                </Text>
+                              </PopoverContent>
+                            </Portal>
+                          </Popover>
+                        </FormLabel>
+                        <Input
+                          size="sm"
+                          borderRadius="4px"
+                          placeholder="Interval (e.g. 10-20)"
+                          {...form.register(hostKey + "." + index + ".interval")}
+                        />
+                        {accordionErrors && accordionErrors[index]?.interval && (
+                          <Error>{accordionErrors[index]?.interval?.message}</Error>
                         )}
                       </FormControl>
                       <FormControl

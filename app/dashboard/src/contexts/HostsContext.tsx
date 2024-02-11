@@ -9,6 +9,9 @@ type HostsSchema = Record<
     port: number | null;
     path: string | null;
     sni: string | null;
+    packets: string | null;
+    length: string | null;
+    interval: string | null;
     host: string | null;
   }[]
 >;

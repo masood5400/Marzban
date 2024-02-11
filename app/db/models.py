@@ -164,6 +164,9 @@ class ProxyHost(Base):
     port = Column(Integer, nullable=True)
     path = Column(String(256), unique=False, nullable=True)
     sni = Column(String(256), unique=False, nullable=True)
+    packets = Column(String(256), unique=False, nullable=True)
+    length = Column(String(256), unique=False, nullable=True)
+    interval = Column(String(256), unique=False, nullable=True)
     host = Column(String(256), unique=False, nullable=True)
     security = Column(
         Enum(ProxyHostSecurity),

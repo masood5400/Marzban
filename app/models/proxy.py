@@ -134,6 +134,9 @@ class ProxyHost(BaseModel):
     address: str
     port: Optional[int] = Field(None, nullable=True)
     sni: Optional[str] = Field(None, nullable=True)
+    packets: Optional[str] = Field(None, nullable=True)
+    length: Optional[str] = Field(None, nullable=True)
+    interval: Optional[str] = Field(None, nullable=True)
     host: Optional[str] = Field(None, nullable=True)
     path: Optional[str] = Field(None, nullable=True)
     security: ProxyHostSecurity = ProxyHostSecurity.inbound_default
